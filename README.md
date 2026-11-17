@@ -14,7 +14,7 @@ Centralizar o registro de campanhas, doações e entregas, facilitando o acompan
 - Consulta ao histórico de movimentações.
 
 ## Tecnologias
-- Python 3.12
+- Python 3.14
 - Django 5.2
 - HTML5 e CSS3
 - Bootstrap 5.3
