@@ -10,7 +10,7 @@ O DoeBem utilizará uma arquitetura monolítica em camadas, organizada conforme 
 - Persistência: armazenamento dos dados no banco de dados SQLite durante o desenvolvimento.
 
 ## Tecnologias
-- Python 3.12
+- Python 3.14
 - Django 5.2
 - HTML5
 - CSS3
