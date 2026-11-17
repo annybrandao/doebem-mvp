@@ -24,4 +24,4 @@ Centralizar o registro de campanhas, doações e entregas, facilitando o acompan
 MVP em desenvolvimento acadêmico, com implementação incremental e documentação das etapas realizadas.
 
 ## Autor
-Projeto acadêmico do curso de Análise e Desenvolvimento de Sistemas – Cruzeiro do Sul.
+Anny Brandão Leite
