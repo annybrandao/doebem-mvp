@@ -1,0 +1,42 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movimentação registrada - DoeBem</title>
+    <link rel="stylesheet" href="{% static 'campanhas/estilo.css' %}">
+</head>
+<body>
+    <main class="container">
+        <header class="cabecalho">
+            <h1>DoeBem</h1>
+            <p class="subtitulo">Sistema de Gestão de Doações</p>
+        </header>
+
+        <section class="resultado" aria-live="polite">
+            <h2>✓ Movimentação registrada com sucesso!</h2>
+            <h3>Resumo da movimentação</h3>
+
+            <p><strong>Campanha:</strong> {{ campanha.nome }}</p>
+            <p><strong>Movimentação:</strong> {{ tipo }}</p>
+            <p><strong>Tipo de agasalho:</strong> {{ tipo_agasalho }}</p>
+            <p><strong>Quantidade:</strong> {{ quantidade }} unidade(s)</p>
+
+            <p class="saldo">
+                Saldo disponível atualizado:
+                <strong>{{ saldo }} unidade(s)</strong>
+            </p>
+
+            <a class="botao" href="{% url 'campanhas:movimentacao' %}">
+                Nova movimentação
+            </a>
+
+            <a class="voltar" href="{% url 'campanhas:inicio' %}">
+                Voltar ao menu
+            </a>
+        </section>
+    </main>
+</body>
+</html>

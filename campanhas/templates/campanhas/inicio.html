@@ -1,0 +1,67 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DoeBem - Início</title>
+    <link rel="stylesheet" href="{% static 'campanhas/estilo.css' %}">
+</head>
+<body>
+    <main class="container">
+        <header class="cabecalho">
+            <h1>DoeBem</h1>
+            <p class="subtitulo">Sistema de Gestão de Doações Comunitárias</p>
+        </header>
+
+        <section class="boas-vindas">
+            <h2>Olá, voluntário!</h2>
+            <p>Acompanhe as campanhas e organize as doações.</p>
+        </section>
+
+        <section id="campanhas">
+            <h2>Campanhas ativas</h2>
+
+            {% for campanha in campanhas %}
+                <article class="campanha">
+                    <h3>{{ campanha.nome }}</h3>
+                    <span class="status">ATIVA</span>
+                    <p>{{ campanha.descricao }}</p>
+                    <p>Início: {{ campanha.data_inicio|date:"d/m/Y" }}</p>
+                    <p>Estoque total disponível: {{ campanha.disponivel }} unidades</p>
+                </article>
+            {% empty %}
+                <p>Nenhuma campanha ativa cadastrada.</p>
+            {% endfor %}
+        </section>
+
+        <nav class="acoes">
+            <a class="botao" href="{% url 'campanhas:movimentacao' %}">
+                Registrar doação ou entrega
+            </a>
+            <a class="botao secundario" href="#campanhas">
+                Consultar campanhas
+            </a>
+        </nav>
+
+        <button class="botao contraste" type="button"
+                onclick="document.body.classList.toggle('alto-contraste')"
+                aria-pressed="false"
+                id="botao-contraste">
+            Ativar alto contraste
+        </button>
+    </main>
+
+    <script>
+        const botao = document.getElementById("botao-contraste");
+        botao.addEventListener("click", function () {
+            const ativo = document.body.classList.contains("alto-contraste");
+            botao.setAttribute("aria-pressed", String(!ativo));
+            botao.textContent = ativo
+                ? "Ativar alto contraste"
+                : "Desativar alto contraste";
+        });
+    </script>
+</body>
+</html>
