@@ -1,0 +1,70 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registrar movimentação - DoeBem</title>
+    <link rel="stylesheet" href="{% static 'campanhas/estilo.css' %}">
+</head>
+<body>
+    <main class="container">
+        <header class="cabecalho">
+            <h1>DoeBem</h1>
+            <p class="subtitulo">Sistema de Gestão de Doações</p>
+        </header>
+
+        <section class="formulario">
+            <h2>Olá, voluntário!</h2>
+            <p>Preencha os dados abaixo para registrar uma doação ou entrega.</p>
+
+            {% for mensagem in messages %}
+                <p class="erro" role="alert">{{ mensagem }}</p>
+            {% endfor %}
+
+            <form method="post">
+                {% csrf_token %}
+
+                <label for="tipo">Tipo de movimentação</label>
+                <select id="tipo" name="tipo" required>
+                    <option value="">Selecione</option>
+                    <option value="doacao">Doação</option>
+                    <option value="entrega">Entrega</option>
+                </select>
+
+                <label for="campanha">Campanha</label>
+                <select id="campanha" name="campanha" required>
+                    {% for campanha in campanhas %}
+                        <option value="{{ campanha.id }}">{{ campanha.nome }}</option>
+                    {% empty %}
+                        <option value="">Nenhuma campanha ativa</option>
+                    {% endfor %}
+                </select>
+
+                <label for="pessoa">Nome do doador ou beneficiário</label>
+                <input id="pessoa" name="pessoa" type="text"
+                       maxlength="100" required>
+
+                <label for="tipo_agasalho">Tipo de agasalho</label>
+                <input id="tipo_agasalho" name="tipo_agasalho" type="text"
+                       placeholder="Ex.: Casaco adulto" maxlength="100" required>
+
+                <label for="quantidade">Quantidade</label>
+                <input id="quantidade" name="quantidade" type="number"
+                       min="1" required>
+
+                <label for="data">Data</label>
+                <input id="data" name="data" type="date"
+                       value="{{ hoje }}" required>
+
+                <button class="botao" type="submit">Salvar movimentação</button>
+            </form>
+
+            <a class="voltar" href="{% url 'campanhas:inicio' %}">
+                Voltar ao menu
+            </a>
+        </section>
+    </main>
+</body>
+</html>
